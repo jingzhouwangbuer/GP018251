@@ -12,8 +12,8 @@ public class FruitFactory {
     static{
         System.out.println("简单工厂模式");
     }
-    public simplefactory.Fruit produce(Class clazz) throws Exception{
+    public Fruit produce(Class clazz) throws Exception{
 
-        return (simplefactory.Fruit)clazz.newInstance();
+        return (Fruit)clazz.newInstance();
     }
 }

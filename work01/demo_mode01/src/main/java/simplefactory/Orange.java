@@ -7,7 +7,7 @@ package simplefactory;
  */
 
 
-public class Orange implements simplefactory.Fruit {
+public class Orange implements Fruit {
 
     public void print() {
         System.out.println("果园生产了橘子");

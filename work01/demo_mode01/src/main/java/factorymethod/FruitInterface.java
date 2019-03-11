@@ -1,6 +1,5 @@
 package factorymethod;
 
-import simplefactory.Fruit;
 
 /**
  * @介绍 ：

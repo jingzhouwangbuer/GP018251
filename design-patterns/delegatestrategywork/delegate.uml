@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.cn.delegate.t1.Boss</OriginalElement>
+  <nodes>
+    <node x="195.00000000000003" y="104.0">com.cn.delegate.t1.EmployeeA</node>
+    <node x="234.6607142857143" y="0.0">com.cn.delegate.t1.IEmployee</node>
+    <node x="0.0" y="104.0">com.cn.delegate.t1.EmployeeB</node>
+    <node x="192.12500000000003" y="312.0">com.cn.delegate.t1.Boss</node>
+    <node x="227.62500000000003" y="208.0">com.cn.delegate.t1.Leader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.cn.delegate.t1.Leader" target="com.cn.delegate.t1.IEmployee">
+      <point x="21.875" y="-27.0" />
+      <point x="337.0" y="178.0" />
+      <point x="380.5" y="178.0" />
+      <point x="380.5" y="79.0" />
+      <point x="344.03571428571433" y="79.0" />
+      <point x="21.875" y="27.0" />
+    </edge>
+    <edge source="com.cn.delegate.t1.Boss" target="com.cn.delegate.t1.Leader">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.cn.delegate.t1.Leader" target="com.cn.delegate.t1.EmployeeB">
+      <point x="-65.625" y="-27.0" />
+      <point x="249.50000000000003" y="188.0" />
+      <point x="87.5" y="188.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.cn.delegate.t1.Leader" target="com.cn.delegate.t1.EmployeeA">
+      <point x="-21.875" y="-27.0" />
+      <point x="293.25" y="188.0" />
+      <point x="282.5" y="188.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.cn.delegate.t1.EmployeeB" target="com.cn.delegate.t1.IEmployee">
+      <point x="0.0" y="-27.0" />
+      <point x="87.5" y="79.0" />
+      <point x="256.53571428571433" y="79.0" />
+      <point x="-65.625" y="27.0" />
+    </edge>
+    <edge source="com.cn.delegate.t1.EmployeeA" target="com.cn.delegate.t1.IEmployee">
+      <point x="0.0" y="-27.0" />
+      <point x="282.5" y="79.0" />
+      <point x="300.28571428571433" y="79.0" />
+      <point x="-21.875" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1" x="156.36363636363632" y="197.45454545454544" />
+  <SelectedNodes>
+    <node>com.cn.delegate.t1.Boss</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -11,6 +11,8 @@ import adapter.t2.ResultMsg;
 
 public interface IPassportForThird {
 
+
+
     ResultMsg loginForQQ(String id);
 
     ResultMsg loginForWechat(String id);

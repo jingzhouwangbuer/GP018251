@@ -1,0 +1,91 @@
+一、用一句自己的话总结学过的设计模式
+1单例模式
+  只有一个实例
+2工厂模式
+  定制你想要的实体
+3原型模式
+  以某某为原型，创建了某某对象 （深克隆 浅克隆）
+4代理模式
+  将被代理对象保护起来 代理对象实现增强、控制（AOP）
+5策略模式
+  采用不同的算法最终实现相同的结果（条条大路通罗马）
+6适配器模式
+  新的接口实现对原有接口的兼容转换
+7装饰者模式
+  对原有的对象进行包装加强，装饰者与被装饰者满足is-a保持oop的关系
+8模板模式
+  将一系列的算法用统一的方式包装起来依次实现，将有需要的算法可以留给子类去实现
+9观察者模式
+  多个观察者对象监听观察者 一旦被观察出现变化 就会立即通知到各个观察者
+二、列举SpringAOP、IOC、DI应用的代码片段 
+
+1、Spring AOP
+  //生命这是一个组件
+@Component
+//声明这是一个切面Bean
+@Aspect
+@Slf4j
+public class AnnotationAspect{
+    //配置切入点，该方法没有方法体，主要为方便同类中其他方法使用此处配置的切入点
+    @Ponintcut("execution(* com.demo.pattern.spring.aop.service..*(..))")
+    public void aspect(){}
+
+    /**
+    * 配置前置通知，使用再方法aspect()撒谎给你注册的切入点，同时接收JoinPoint切入点对象，可以没有该参数
+    **/
+    @Before("aspect()")
+    public void befor(JoinPoint joinPoint){
+        log.info("before通知"+joinPoint);
+    }
+
+    //配置后置通知，使用方法再aspect（）上注册的切入点
+    public void after(JoinPoint joinPoint){
+        log.info("after通知"+joinPoint);
+    }
+
+    //配置环绕通知，使用方法再aspect（）上注册的切入点
+    @Arount("aspect()")
+    public void around(JoinPoint joinPoint){
+        long start = System.currentTimeMills();
+        try{
+            ((ProceeedingJoinPoint) joinPoint).proceed();
+            long end = Sytem.currentTimeMills();
+            log.info("around通知"+jointPoint + "\tUser time:"+（end-start）="ms!");
+        }catch(Throwable e){
+            long end = System.currentTimeMills();
+            log.info("around通知"+joinPoint + "\tUse time"+(end - start)+"ms with execption:"+e.getMessage);
+        }
+    }
+
+    @AfterReturning("aspect()")
+    public void afterReturn(JoinPoint joinPoint){
+        log.info("afterReturn 通知"+ joinPoint);
+    }
+
+    //配置抛出异常后通知，使用再方法aspect()上注册的切入点
+    @AfterThrowing(pointcut="aspect()",throwing="ex")
+    public void afterThrow(JoinPoint joinPoint,Exception ex){
+        log.info("afterThrow通知"+joinPoint + "\t"+ex.getMessage());
+    }
+}
+
+2、IOC
+	@Repository
+	public class BackStageDaoImpl extends HibernateDaoSupport implements BackStageDao
+
+	@Service
+	public class BackStageServicesImpl implements BackStageServices
+
+	<context:component-scan base-package="com.hb.lw.db.dao,com.hb.lw.db.services" />
+
+3、DI
+	@Autowired
+	private BackStageServicesImpl service;
+	
+    @Resource
+    private DatumService datumService;
+	
+    @Autowired
+	public void setDatumService(DatumService datumService) {
+        this.datumService = datumService;
+    }

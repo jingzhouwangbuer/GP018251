@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 public class JinGuBang implements Serializable{
 
+
+
     private int length=1000;
 
     private int width=50;

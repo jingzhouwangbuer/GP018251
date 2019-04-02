@@ -1,0 +1,67 @@
+package dynamicproxy.t3.gpproxy;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+/**
+ * @介绍 ：
+ * @作者 ：RJT
+ * @时间 ：2019-04-01 21:48
+ */
+
+
+public class GPClassLoader extends ClassLoader{
+    private File classPathFile;
+    public GPClassLoader(){
+        String classPath = GPClassLoader.class.getResource("").getPath();
+        this.classPathFile = new File(classPath);
+    }
+    //这个方法主要通过对象名称得到对象的class文件所在的绝对路径 然后将.class的文件读取出来
+    //得到一个Class对象
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        String className = GPClassLoader.class.getPackage().getName() + "." + name;
+        System.out.println("className:"+className);
+     //   className:dynamicproxy.t3.$Proxy0
+     //   classFile:D:\GitRepository\design-patterns\proxywork\target\classes\dynamicproxy\t3\$Proxy0.class
+        if(classPathFile != null){
+            File classFile = new File(classPathFile,name.replaceAll("\\.","/") + ".class");
+
+            System.out.println("classFile:"+classFile);
+            if(classFile.exists()){
+                FileInputStream in = null;
+                ByteArrayOutputStream out = null;
+                try{
+                    in = new FileInputStream(classFile);
+                    out = new ByteArrayOutputStream();
+
+                    byte [] buff = new byte[1024];
+                    int len;
+                    while ((len = in.read(buff)) != -1){
+                        out.write(buff,0,len);
+                    }
+                    return defineClass(className,out.toByteArray(),0,out.size());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    if(null != in){
+                        try {
+                            in.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(out != null){
+                        try {
+                            out.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+}
